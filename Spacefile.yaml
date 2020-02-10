@@ -16,6 +16,17 @@
 
 @clone: string
 
+_dep_install:
+    _info:
+        title: Check dependencies for this module.
+    _env:
+        - RUN: TEXT_DEP_INSTALL
+
+_info:
+    title: Text module
+    desc: |
+        Handles text file preprocessing.
+
 extractvariables:
     _info:
         title: Extract all variable names from a text
