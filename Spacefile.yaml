@@ -1,0 +1,46 @@
+@clone: string
+
+extractvariables:
+    _info:
+        title: Extract all variable names from a text
+    _env:
+        - text:
+            title: Text contents
+        - RUN: TEXT_EXTRACT_VARIABLES -- "${text}"
+
+getenv:
+    _info:
+        title: For a list of extracted variables get their values in the current env
+    _env:
+        - variables:
+            title: List of variable names
+        - RUN: TEXT_GET_ENV -- "${variables}"
+
+variablesubst:
+    _info:
+        title: Substitute variables in text for their given values
+    _env:
+        - text:
+            title: Text contents
+        - variables:
+            title: List of variable names
+        - values:
+            title: list of varname=value rows
+        - RUN: TEXT_GET_ENV -- "${variables}"
+
+filter:
+    _info:
+        title: Filter text content on STDIN on #ifdef, #ifndef
+        desc: |
+            Parses and filters away on #ifdef, #ifndef
+    _env:
+        - RUN: TEXT_FILTER
+
+preprocess:
+    _info:
+        title: Variable substitute and filter text on STDIN
+        desc: |
+            Does variable substitution using variables in environment,
+            then parses and filters away on #ifdef, #ifndef
+    _env:
+        - RUN: TEXT_PREPROCESS

@@ -1,0 +1,16 @@
+#iftrue ${ASTONISHED}
+#ifdef ${NAME}
+Oh geez ${NAME}, this is awesome!
+#endif
+#ifndef ${NAME}
+Oh geez Anonymous, this is awesome!
+#endif
+#endif
+#ifntrue ${ASTONISHED}
+#ifdef ${NAME}
+Eh ${NAME}, really?
+#endif
+#ifndef ${NAME}
+Eh Anonymous, really?
+#endif
+#endif
