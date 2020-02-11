@@ -31,7 +31,7 @@ TEXT_DEP_INSTALL()
 
     # Don't check for programs using OS_IS_INSTALLED here
     # to prevent circular dependency
-    if command -v "awk" >/dev/null && command -v "sort" && command -v "uniq" >/dev/null ; then
+    if command -v "awk" >/dev/null && command -v "sort" >/dev/null && command -v "uniq" >/dev/null ; then
         PRINT "Dependencies found." "ok"
     else
         PRINT "Failed finding dependencies. Requirements: awk, sort and uniq" "error"
