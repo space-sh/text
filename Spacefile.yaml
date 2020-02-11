@@ -53,7 +53,7 @@ variablesubst:
             title: List of variable names
         - values:
             title: list of varname=value rows
-        - RUN: TEXT_GET_ENV -- "${variables}"
+        - RUN: TEXT_VARIABLE_SUBST -- "${text}" "${variables}" "${values}"
 
 filter:
     _info:
