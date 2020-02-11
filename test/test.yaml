@@ -1,0 +1,64 @@
+#
+# Copyright 2020 Blockie AB
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+@clone: string
+@source: "@{DIR}/../Spacefile.sh"
+
+_info:
+    title: Test suite for the Text module.
+    desc: |
+        These tests uses the "testrunner" module to run the tests.
+        If the tests are run directly as-is outside a wrapper,
+        they might wreak havoc on your system.
+        TestRunner module wraps the tests properly.
+_env:
+    - RUN: ${_SPACEBIN} -m testrunner /run/ -- -- @{DIR}/test.yaml
+
+_platforms:
+    - type: docker
+      subtype: alpine:latest
+    - type: docker
+      subtype: archlinux:20191205
+    - type: docker
+      subtype: centos:latest
+    - type: docker
+      subtype: debian:latest
+
+_tests:
+    -
+        -
+            @include: @{DIR}/../Spacefile.yaml|/_dep_install/
+        -
+            _env:
+                - RUN: _TEST_TEXT_EXTRACT_VARIABLES
+        -
+            _env:
+                - RUN: _TEST_TEXT_GET_ENV
+        -
+            _env:
+                - RUN: _TEST_TEXT_VARIABLE_SUBST
+        -
+            _env:
+                - RUN: _TEST_TEXT_FILTER
+        -
+            _env:
+                - RUN: _TEST_TEXT_PREPROCESS
+
+_clean:
+    _info:
+        title: Do nothing.
+    _env:
+        - SPACE_WRAP: !unset
+        - RUN: ":"

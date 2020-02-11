@@ -1,0 +1,16 @@
+#iftrue ASTONISHED_VALUE
+#ifdef NAME_VALUE
+Oh geez NAME_VALUE, this is awesome!
+#endif
+#ifndef NAME_VALUE
+Oh geez Anonymous, this is awesome!
+#endif
+#endif
+#ifntrue ASTONISHED_VALUE
+#ifdef NAME_VALUE
+Eh NAME_VALUE, really?
+#endif
+#ifndef NAME_VALUE
+Eh Anonymous, really?
+#endif
+#endif
