@@ -1,6 +1,6 @@
 # Space Module change log - text
 
-## [current]
+## [1.0.1 - 2020-02-13]
 
 * Suppress `sort` command output during dependency check
 
