@@ -8,7 +8,7 @@ Oh geez Anonymous, this is awesome!
 #endif
 #ifntrue ${ASTONISHED}
 #ifdef ${NAME}
-Eh ${NAME}, really?
+Eh ${NAME} ${NAME2}, really? ${GREETINGS}
 #endif
 #ifndef ${NAME}
 Eh Anonymous, really?

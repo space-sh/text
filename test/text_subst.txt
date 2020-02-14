@@ -8,7 +8,7 @@ Oh geez Anonymous, this is awesome!
 #endif
 #ifntrue ASTONISHED_VALUE
 #ifdef NAME_VALUE
-Eh NAME_VALUE, really?
+Eh NAME_VALUE NAME2_VALUE, really? SALUTE
 #endif
 #ifndef NAME_VALUE
 Eh Anonymous, really?

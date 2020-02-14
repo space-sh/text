@@ -2,6 +2,8 @@
 
 ## [current]
 
++ Add support to multiple variables extraction from the same line
+
 * Change awk scripts to support BusyBox's awk and mawk
 
 

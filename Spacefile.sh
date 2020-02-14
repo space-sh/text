@@ -47,7 +47,16 @@ TEXT_EXTRACT_VARIABLES()
     shift
 
     printf "%s\\n" "${text}" |
-        awk ' { if (match($0, /(\$\{[A-Za-z_][0-9A-Za-z_]*\})/)) print substr($0,RSTART+2,RLENGTH-3) }' |
+        awk '
+            {
+                while (match($0, /(\$\{[A-Za-z_][0-9A-Za-z_]*\})/))
+                {
+                    result = substr($0,RSTART+2,RLENGTH-3);
+                    print result;
+                    sub(/\$\{[A-Za-z_][0-9A-Za-z_]*\}/, "", result);
+                    $0 = substr($0, RSTART + RLENGTH);
+                }
+            }' |
         sort |uniq
 }
 
