@@ -47,7 +47,7 @@ TEXT_EXTRACT_VARIABLES()
     shift
 
     printf "%s\\n" "${text}" |
-        awk ' { if (match($0,/(\${[A-Za-z_][0-9A-Za-z_]*})/,m)) print substr(m[0],3,length(m[0])-3) }' |
+        awk ' { if (match($0, /(\$\{[A-Za-z_][0-9A-Za-z_]*\})/)) print substr($0,RSTART+2,RLENGTH-3) }' |
         sort |uniq
 }
 
@@ -103,7 +103,7 @@ TEXT_FILTER()
     }
 
     {
-        if (match($0,/^#endif[ ]*$/,m))
+        if (match($0,/^#endif[ ]*$/))
         {
             count--;
             if (count == 0)
@@ -115,18 +115,32 @@ TEXT_FILTER()
     }
 
     {
-        if (match($0,/^#if([n]?)def[ ]?([^ ]*)$/,m))
+        if (match($0,/^#if([n]?)def[ ]?([^ ]*)$/))
         {
             count++;
             if (count == 1)
             {
-                if (length(m[2]) >0)
+                if (length(substr($2,RSTART,RLENGTH)) >0)
                 {
-                    keep=(m[1] == "" ? 1 : 0)
+                    if (substr($1,RSTART,RLENGTH)=="#ifdef")
+                    {
+                        keep=1
+                    }
+                    else if (substr($1,RSTART,RLENGTH)=="#ifndef")
+                    {
+                        keep=0
+                    }
                 }
                 else
                 {
-                    keep=(m[1] == "" ? 0 : 1)
+                    if (substr($1,RSTART,RLENGTH)=="#ifdef")
+                    {
+                        keep=0
+                    }
+                    else if (substr($1,RSTART,RLENGTH)=="#ifndef")
+                    {
+                        keep=1
+                    }
                 }
                 next
             }
@@ -134,12 +148,12 @@ TEXT_FILTER()
     }
 
     {
-        if (match($0,/^#if([n]?)true[ ]?([^ ]*)$/,m))
+        if (match($0,/^#if([n]?)true[ ]?([^ ]*)$/))
         {
             count++;
             if (count == 1)
             {
-                if (m[2] == "true")
+                if (substr($2,RSTART,RLENGTH)=="true")
                 {
                     keep=1
                 }
@@ -147,7 +161,15 @@ TEXT_FILTER()
                 {
                     keep=0
                 }
-                keep=(m[1] == "" ? keep : !keep)
+                if (substr($1,RSTART,RLENGTH)=="#iftrue")
+                {
+                    keep=keep
+                }
+                else if (substr($1,RSTART,RLENGTH)=="#ifntrue")
+                {
+                    keep=!keep
+                }
+
                 next
             }
         }
