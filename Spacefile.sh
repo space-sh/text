@@ -53,7 +53,6 @@ TEXT_EXTRACT_VARIABLES()
                 {
                     result = substr($0,RSTART+2,RLENGTH-3);
                     print result;
-                    sub(/\$\{[A-Za-z_][0-9A-Za-z_]*\}/, "", result);
                     $0 = substr($0, RSTART + RLENGTH);
                 }
             }' |
