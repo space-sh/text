@@ -49,11 +49,11 @@ TEXT_EXTRACT_VARIABLES()
     printf "%s\\n" "${text}" |
         awk '
             {
-                while (match($0, /(\$\{[A-Za-z_][0-9A-Za-z_]*\})/))
+                while (match($0,/(\$\{[A-Za-z_][0-9A-Za-z_]*\})/))
                 {
                     result = substr($0,RSTART+2,RLENGTH-3);
                     print result;
-                    $0 = substr($0, RSTART + RLENGTH);
+                    $0 = substr($0,RSTART+RLENGTH);
                 }
             }' |
         sort |uniq
