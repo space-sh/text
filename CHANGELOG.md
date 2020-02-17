@@ -8,6 +8,8 @@
 
 * Expect variable name definitions at the start of the line during substitution
 
+* Change `TEXT_GET_ENV` to handle undefined variables
+
 
 ## [1.0.1 - 2020-02-13]
 

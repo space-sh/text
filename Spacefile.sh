@@ -61,16 +61,22 @@ TEXT_EXTRACT_VARIABLES()
 
 TEXT_GET_ENV()
 {
-    SPACE_SIGNATURE="variables"
+    SPACE_SIGNATURE="variables [failonerror]"
 
     local variables="${1}"
+    shift
+
+    local failonerror="${1:-1}"
     shift
 
     local varname=
     local value=
     for varname in ${variables}; do
-        eval "value=\"\${${varname}}\""
-        printf "%s=%s\\n" "${varname}" "${value}"
+        if ! env |grep "^${varname}="; then
+            if [ "${failonerror}" = "1" ]; then
+                return 1
+            fi
+        fi
     done
 }
 
@@ -217,7 +223,7 @@ TEXT_PREPROCESS()
 
     local text="$(cat)"
     local variables="$(TEXT_EXTRACT_VARIABLES "${text}")"
-    local values="$(TEXT_GET_ENV "${variables}")"
+    local values="$(TEXT_GET_ENV "${variables}" "1")"
     local text="$(TEXT_VARIABLE_SUBST "${text}" "${variables}" "${values}")"
     printf "%s\\n" "${text}" |TEXT_FILTER
 }

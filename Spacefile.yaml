@@ -41,7 +41,9 @@ getenv:
     _env:
         - variables:
             title: List of variable names
-        - RUN: TEXT_GET_ENV -- "${variables}"
+        - failonerror:
+            title: Toggle failure on error when an environment variable is undefined
+        - RUN: TEXT_GET_ENV -- "${variables}" "${failonerror}"
 
 variablesubst:
     _info:

@@ -44,11 +44,11 @@ _TEST_TEXT_GET_ENV()
     variables=$(TEXT_EXTRACT_VARIABLES "$text")
 
     # Set environment variables to reference values
-    eval "$(cat ./test/text_values.txt)"
+    export $(cat ./test/text_values.txt)
 
     # Read environment values from variables
     local output=
-    output=$(TEXT_GET_ENV "$variables")
+    output=$(TEXT_GET_ENV "$variables" "1")
 
     # Load reference environment variable settings
     local reference="$(cat ./test/text_values.txt)"
@@ -71,11 +71,11 @@ _TEST_TEXT_VARIABLE_SUBST()
     variables=$(TEXT_EXTRACT_VARIABLES "$text")
 
     # Set environment variables
-    eval "$(cat ./test/text_values.txt)"
+    export $(cat ./test/text_values.txt)
 
     # Retrieve values from environment variables
     local values=
-    values=$(TEXT_GET_ENV "$variables")
+    values=$(TEXT_GET_ENV "$variables" "1")
 
     # Substitute variables with environment variable values
     local output=
@@ -102,11 +102,11 @@ _TEST_TEXT_FILTER()
     variables=$(TEXT_EXTRACT_VARIABLES "$text")
 
     # Set environment variables
-    eval "$(cat ./test/text_filter_values.txt)"
+    export "$(cat ./test/text_filter_values.txt)"
 
     # Read environment values from variables
     local values=
-    values=$(TEXT_GET_ENV "$variables")
+    values=$(TEXT_GET_ENV "$variables" "1")
 
     # Substitute variables in text
     local subst=
@@ -132,7 +132,7 @@ _TEST_TEXT_PREPROCESS()
     SPACE_DEP="TEXT_PREPROCESS PRINT"
 
     # Set environment variables
-    eval "$(cat ./test/text_preprocess_values.txt)"
+    export "$(cat ./test/text_preprocess_values.txt)"
 
     # Load reference variables to compare against
     local reference="$(cat ./test/text_preprocess.txt)"
