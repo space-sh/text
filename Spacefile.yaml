@@ -43,6 +43,7 @@ getenv:
             title: List of variable names
         - failonerror:
             title: Toggle failure on error when an environment variable is undefined
+            value: ${failonerror:-1}
         - RUN: TEXT_GET_ENV -- "${variables}" "${failonerror}"
 
 variablesubst:
