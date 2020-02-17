@@ -91,8 +91,8 @@ TEXT_VARIABLE_SUBST()
     local value=
     local varname=
     for varname in ${variables}; do
-        value="$(printf "%s\\n" "${values}" |grep -m 1 ${varname})"
-        value="${value#*${varname}=}"
+        value="$(printf "%s\\n" "${values}" |grep -m 1 "^${varname}=")"
+        value="${value#${varname}=}"
         varname="\${${varname}}"
         STRING_ESCAPE "varname" '/'
         STRING_ESCAPE "value" '/'

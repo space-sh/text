@@ -6,6 +6,8 @@
 
 * Change awk scripts to support BusyBox's awk and mawk
 
+* Expect variable name definitions at the start of the line during substitution
+
 
 ## [1.0.1 - 2020-02-13]
 
