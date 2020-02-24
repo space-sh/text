@@ -1,5 +1,10 @@
 # Space Module change log - text
 
+## [1.1.1 - 2020-02-24]
+
+* Update documentation
+
+
 ## [1.1.0 - 2020-02-17]
 
 + Add support to multiple variables extraction from the same line
