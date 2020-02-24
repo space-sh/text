@@ -1,4 +1,4 @@
-# Text module | [![build status](https://gitlab.com/space-sh/text/badges/master/build.svg)](https://gitlab.com/space-sh/text/commits/master)
+# Text module | [![build status](https://gitlab.com/space-sh/text/badges/master/pipeline.svg)](https://gitlab.com/space-sh/text/commits/master)
 
 Handles text file preprocessing.
 
