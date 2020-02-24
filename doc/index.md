@@ -12,6 +12,9 @@ The _Text_ module provides text preprocessing and variable substitution by means
 
 ## Dependencies
 
+Modules:  
++ string  
+
 External:  
 + awk  
 + sort  
