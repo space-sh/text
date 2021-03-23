@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-@clone: string
+@clone: string:1.4.0
 
 _dep_install:
     _info:
