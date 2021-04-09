@@ -60,9 +60,11 @@ variablesubst:
 
 filter:
     _info:
-        title: Filter text content on STDIN on #ifdef, #ifndef
+        title: Filter text content on STDIN on directives
         desc: |
-            Parses and filters away on #ifdef, #ifndef
+            Parses and includes/excludes on #ifdef, #ifndef, #iftrue, #ifntrue
+            #ifdef looks at whatever comes on the line after #ifdef, if anything then it is defined.
+            #iftrue looks at whatever comes on the line after #iftrue if it equals "true".
     _env:
         - RUN: TEXT_FILTER
 
@@ -71,6 +73,6 @@ preprocess:
         title: Variable substitute and filter text on STDIN
         desc: |
             Does variable substitution using variables in environment,
-            then parses and filters away on #ifdef, #ifndef
+            then parse and includes/excludes on #ifdef, #ifndef, #iftrue, #ifntrue
     _env:
         - RUN: TEXT_PREPROCESS
